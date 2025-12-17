@@ -122,6 +122,7 @@ body {
   border-radius: 16px;
   background: rgba(2,6,23,0.6);
   border: 1px solid rgba(255,255,255,0.06);
+  pointer-events: none;
 }
 
 .hero span {

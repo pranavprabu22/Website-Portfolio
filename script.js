@@ -137,8 +137,12 @@ const heroCanvas = document.getElementById("hero-visual");
 const hctx = heroCanvas.getContext("2d");
 
 function resizeHeroCanvas() {
-  heroCanvas.width = heroCanvas.offsetWidth;
-  heroCanvas.height = heroCanvas.offsetHeight;
+  const dpr = window.devicePixelRatio || 1;
+
+  heroCanvas.width = heroCanvas.offsetWidth * dpr;
+  heroCanvas.height = heroCanvas.offsetHeight * dpr;
+
+  hctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 }
 resizeHeroCanvas();
 window.addEventListener("resize", resizeHeroCanvas);
@@ -156,7 +160,20 @@ function drawHero() {
   nodes.forEach(n => {
     n.x += n.vx;
     n.y += n.vy;
-
+  
+    // Subtle mouse repulsion
+    if (heroMouse.x !== null) {
+      const dx = n.x - heroMouse.x;
+      const dy = n.y - heroMouse.y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+  
+      if (dist < 120) {
+        const force = (120 - dist) / 120;
+        n.x += (dx / dist) * force * 1.2;
+        n.y += (dy / dist) * force * 1.2;
+      }
+    }
+  
     if (n.x < 0 || n.x > heroCanvas.width) n.vx *= -1;
     if (n.y < 0 || n.y > heroCanvas.height) n.vy *= -1;
   });
@@ -169,7 +186,16 @@ function drawHero() {
       const dist = Math.sqrt(dx * dx + dy * dy);
 
       if (dist < 120) {
-        hctx.strokeStyle = `rgba(56,189,248,${1 - dist / 120})`;
+        let alpha = 1 - dist / 120;
+
+        if (heroMouse.x !== null) {
+          const mx = (nodes[i].x + nodes[j].x) / 2 - heroMouse.x;
+          const my = (nodes[i].y + nodes[j].y) / 2 - heroMouse.y;
+          const md = Math.sqrt(mx * mx + my * my);
+          if (md < 150) alpha += 0.15;
+        }
+
+        hctx.strokeStyle = `rgba(56,189,248,${Math.min(alpha, 0.9)})`;
         hctx.lineWidth = 1;
         hctx.beginPath();
         hctx.moveTo(nodes[i].x, nodes[i].y);
@@ -191,3 +217,16 @@ function drawHero() {
 }
 
 drawHero();
+
+let heroMouse = { x: null, y: null };
+
+heroCanvas.addEventListener("mousemove", e => {
+  const rect = heroCanvas.getBoundingClientRect();
+  heroMouse.x = e.clientX - rect.left;
+  heroMouse.y = e.clientY - rect.top;
+});
+
+heroCanvas.addEventListener("mouseleave", () => {
+  heroMouse.x = null;
+  heroMouse.y = null;
+});
