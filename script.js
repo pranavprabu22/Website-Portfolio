@@ -132,3 +132,62 @@ document.querySelectorAll("section").forEach(section => {
   section.classList.add("reveal");
   observer.observe(section);
 });
+
+const heroCanvas = document.getElementById("hero-visual");
+const hctx = heroCanvas.getContext("2d");
+
+function resizeHeroCanvas() {
+  heroCanvas.width = heroCanvas.offsetWidth;
+  heroCanvas.height = heroCanvas.offsetHeight;
+}
+resizeHeroCanvas();
+window.addEventListener("resize", resizeHeroCanvas);
+
+const nodes = Array.from({ length: 24 }, () => ({
+  x: Math.random() * heroCanvas.width,
+  y: Math.random() * heroCanvas.height,
+  vx: (Math.random() - 0.5) * 0.4,
+  vy: (Math.random() - 0.5) * 0.4,
+}));
+
+function drawHero() {
+  hctx.clearRect(0, 0, heroCanvas.width, heroCanvas.height);
+
+  nodes.forEach(n => {
+    n.x += n.vx;
+    n.y += n.vy;
+
+    if (n.x < 0 || n.x > heroCanvas.width) n.vx *= -1;
+    if (n.y < 0 || n.y > heroCanvas.height) n.vy *= -1;
+  });
+
+  // Lines
+  for (let i = 0; i < nodes.length; i++) {
+    for (let j = i + 1; j < nodes.length; j++) {
+      const dx = nodes[i].x - nodes[j].x;
+      const dy = nodes[i].y - nodes[j].y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+
+      if (dist < 120) {
+        hctx.strokeStyle = `rgba(56,189,248,${1 - dist / 120})`;
+        hctx.lineWidth = 1;
+        hctx.beginPath();
+        hctx.moveTo(nodes[i].x, nodes[i].y);
+        hctx.lineTo(nodes[j].x, nodes[j].y);
+        hctx.stroke();
+      }
+    }
+  }
+
+  // Nodes
+  nodes.forEach(n => {
+    hctx.beginPath();
+    hctx.arc(n.x, n.y, 2, 0, Math.PI * 2);
+    hctx.fillStyle = "#38bdf8";
+    hctx.fill();
+  });
+
+  requestAnimationFrame(drawHero);
+}
+
+drawHero();
