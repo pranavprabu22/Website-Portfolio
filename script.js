@@ -168,6 +168,15 @@ let nodes = [];
 let heroCenter = { x: 0, y: 0 };
 let heroMouse = { x: null, y: null };
 
+const HERO_CONFIG = {
+  cohesion: 0.0006,        // pull toward center
+  separation: 0.04,        // local repulsion
+  separationDist: 40,      // minimum comfortable distance
+  damping: 0.996,          // motion smoothing
+  maxSpeed: 1.1,
+  preferredRadius: 140,    // ideal mesh size
+};
+
 function updateHeroCenter() {
   heroCenter.x = heroCanvas.offsetWidth / 2;
   heroCenter.y = heroCanvas.offsetHeight / 2;
@@ -200,44 +209,66 @@ function initNodes() {
 function drawHero() {
   hctx.clearRect(0, 0, heroCanvas.width, heroCanvas.height);
 
-  nodes.forEach(n => {
-    // Cohesion toward center
+  nodes.forEach((n, i) => {
+    /* ---------- Cohesion toward center ---------- */
     const dxC = heroCenter.x - n.x;
     const dyC = heroCenter.y - n.y;
-    const cohesionStrength = 0.0009;
-
-    n.vx += dxC * cohesionStrength;
-    n.vy += dyC * cohesionStrength;
-
-    // Damping
-    n.vx *= 0.995;
-    n.vy *= 0.995;
-
-    // Clamp velocity
-    const speed = Math.hypot(n.vx, n.vy);
-    if (speed > 1.2) {
-      n.vx = (n.vx / speed) * 1.2;
-      n.vy = (n.vy / speed) * 1.2;
-    }
-
-    // Mouse interaction
+  
+    n.vx += dxC * HERO_CONFIG.cohesion;
+    n.vy += dyC * HERO_CONFIG.cohesion;
+  
+    /* ---------- Soft radius constraint ---------- */
+    const distFromCenter = Math.hypot(dxC, dyC);
+    const radiusError = distFromCenter - HERO_CONFIG.preferredRadius;
+  
+    n.vx -= (dxC / distFromCenter) * radiusError * 0.0004;
+    n.vy -= (dyC / distFromCenter) * radiusError * 0.0004;
+  
+    /* ---------- Separation from nearby nodes ---------- */
+    nodes.forEach((m, j) => {
+      if (i === j) return;
+  
+      const dx = n.x - m.x;
+      const dy = n.y - m.y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+  
+      if (dist > 0 && dist < HERO_CONFIG.separationDist) {
+        const force =
+          (HERO_CONFIG.separationDist - dist) /
+          HERO_CONFIG.separationDist;
+  
+        n.vx += (dx / dist) * force * HERO_CONFIG.separation;
+        n.vy += (dy / dist) * force * HERO_CONFIG.separation;
+      }
+    });
+  
+    /* ---------- Mouse interaction (unchanged, safe) ---------- */
     if (heroMouse.x !== null) {
       const dx = n.x - heroMouse.x;
       const dy = n.y - heroMouse.y;
       const dist = Math.sqrt(dx * dx + dy * dy);
-
+  
       if (dist < 120) {
         const force = (120 - dist) / 120;
-        n.vx += (dx / dist) * force * 0.15;
-        n.vy += (dy / dist) * force * 0.15;
+        n.vx += (dx / dist) * force * 0.12;
+        n.vy += (dy / dist) * force * 0.12;
       }
     }
-
+  
+    /* ---------- Damping ---------- */
+    n.vx *= HERO_CONFIG.damping;
+    n.vy *= HERO_CONFIG.damping;
+  
+    /* ---------- Speed clamp ---------- */
+    const speed = Math.hypot(n.vx, n.vy);
+    if (speed > HERO_CONFIG.maxSpeed) {
+      n.vx = (n.vx / speed) * HERO_CONFIG.maxSpeed;
+      n.vy = (n.vy / speed) * HERO_CONFIG.maxSpeed;
+    }
+  
+    /* ---------- Apply movement ---------- */
     n.x += n.vx;
     n.y += n.vy;
-
-    if (n.x < 0 || n.x > heroCanvas.offsetWidth) n.vx *= -0.8;
-    if (n.y < 0 || n.y > heroCanvas.offsetHeight) n.vy *= -0.8;
   });
 
   // Draw lines
