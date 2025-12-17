@@ -171,8 +171,6 @@ window.addEventListener("load", () => {
 });
 
 function drawHero() {
-  hctx.fillStyle = "rgba(255,0,0,0.05)";
-  hctx.fillRect(0, 0, heroCanvas.width, heroCanvas.height);
   hctx.clearRect(0, 0, heroCanvas.width, heroCanvas.height);
 
   nodes.forEach(n => {

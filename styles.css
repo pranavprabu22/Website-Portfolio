@@ -121,6 +121,7 @@ body {
   width: 100%;
   min-height: 420px;
   height: 420px;
+  background: transparent;
 }
 
 .hero span {
