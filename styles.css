@@ -124,6 +124,15 @@ body {
   background: transparent;
 }
 
+canvas {
+  pointer-events: none;
+}
+
+#bg-canvas,
+#hero-visual {
+  pointer-events: none;
+}
+
 .hero span {
   color: var(--accent);
 }
