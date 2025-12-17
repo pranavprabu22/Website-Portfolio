@@ -140,24 +140,39 @@ function resizeHeroCanvas() {
   const dpr = window.devicePixelRatio || 1;
   const rect = heroCanvas.getBoundingClientRect();
 
+  if (rect.width === 0 || rect.height === 0) return;
+
   heroCanvas.width = rect.width * dpr;
   heroCanvas.height = rect.height * dpr;
 
-  hctx.resetTransform();
+  hctx.setTransform(1, 0, 0, 1, 0, 0);
   hctx.scale(dpr, dpr);
 }
 
-resizeHeroCanvas();
+// 🔥 THIS IS IMPORTANT
+window.addEventListener("load", resizeHeroCanvas);
 window.addEventListener("resize", resizeHeroCanvas);
 
-const nodes = Array.from({ length: 24 }, () => ({
-  x: Math.random() * heroCanvas.offsetWidth,
-  y: Math.random() * heroCanvas.offsetHeight,
-  vx: (Math.random() - 0.5) * 0.4,
-  vy: (Math.random() - 0.5) * 0.4,
-}));
+let nodes = [];
+
+function initNodes() {
+  nodes = Array.from({ length: 24 }, () => ({
+    x: Math.random() * heroCanvas.offsetWidth,
+    y: Math.random() * heroCanvas.offsetHeight,
+    vx: (Math.random() - 0.5) * 0.4,
+    vy: (Math.random() - 0.5) * 0.4,
+  }));
+}
+
+window.addEventListener("load", () => {
+  resizeHeroCanvas();
+  initNodes();
+  drawHero();
+});
 
 function drawHero() {
+  hctx.fillStyle = "rgba(255,0,0,0.05)";
+  hctx.fillRect(0, 0, heroCanvas.width, heroCanvas.height);
   hctx.clearRect(0, 0, heroCanvas.width, heroCanvas.height);
 
   nodes.forEach(n => {

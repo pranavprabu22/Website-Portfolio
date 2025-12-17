@@ -117,9 +117,10 @@ body {
 }
 
 #hero-visual {
+  position: relative;
   width: 100%;
+  min-height: 420px;
   height: 420px;
-  display: block;
 }
 
 .hero span {
