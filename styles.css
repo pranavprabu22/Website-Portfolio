@@ -229,7 +229,6 @@ section::before {
 .project-card:hover {
   transform: translateY(-6px);
   box-shadow: 0 15px 40px rgba(0,0,0,0.5);
-  border-color: rgba(56,189,248,0.4);
 }
 
 .project-card h3 {
@@ -348,7 +347,6 @@ section::before {
 .contact-card:hover {
   transform: translateY(-6px);
   box-shadow: 0 15px 40px rgba(0,0,0,0.5);
-  border-color: rgba(56,189,248,0.4);
 }
 
 .contact-card h4 {
