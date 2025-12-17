@@ -138,18 +138,21 @@ const hctx = heroCanvas.getContext("2d");
 
 function resizeHeroCanvas() {
   const dpr = window.devicePixelRatio || 1;
+  const rect = heroCanvas.getBoundingClientRect();
 
-  heroCanvas.width = heroCanvas.offsetWidth * dpr;
-  heroCanvas.height = heroCanvas.offsetHeight * dpr;
+  heroCanvas.width = rect.width * dpr;
+  heroCanvas.height = rect.height * dpr;
 
-  hctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  hctx.resetTransform();
+  hctx.scale(dpr, dpr);
 }
+
 resizeHeroCanvas();
 window.addEventListener("resize", resizeHeroCanvas);
 
 const nodes = Array.from({ length: 24 }, () => ({
-  x: Math.random() * heroCanvas.width,
-  y: Math.random() * heroCanvas.height,
+  x: Math.random() * heroCanvas.offsetWidth,
+  y: Math.random() * heroCanvas.offsetHeight,
   vx: (Math.random() - 0.5) * 0.4,
   vy: (Math.random() - 0.5) * 0.4,
 }));
@@ -220,13 +223,15 @@ drawHero();
 
 let heroMouse = { x: null, y: null };
 
-heroCanvas.addEventListener("mousemove", e => {
+const heroSection = document.querySelector(".hero");
+
+heroSection.addEventListener("mousemove", e => {
   const rect = heroCanvas.getBoundingClientRect();
   heroMouse.x = e.clientX - rect.left;
   heroMouse.y = e.clientY - rect.top;
 });
 
-heroCanvas.addEventListener("mouseleave", () => {
+heroSection.addEventListener("mouseleave", () => {
   heroMouse.x = null;
   heroMouse.y = null;
 });
