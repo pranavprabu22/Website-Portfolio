@@ -169,12 +169,12 @@ let heroCenter = { x: 0, y: 0 };
 let heroMouse = { x: null, y: null };
 
 const HERO_CONFIG = {
-  cohesion: 0.0006,        // pull toward center
-  separation: 0.04,        // local repulsion
-  separationDist: 40,      // minimum comfortable distance
-  damping: 0.996,          // motion smoothing
+  cohesion: 0.0006,
+  separation: 6,          // 🔥 higher = stronger close repulsion
+  separationDist: 60,     // interaction range
+  damping: 0.996,
   maxSpeed: 1.1,
-  preferredRadius: 140,    // ideal mesh size
+  preferredRadius: 140,
 };
 
 function updateHeroCenter() {
@@ -233,13 +233,15 @@ function drawHero() {
       const dist = Math.sqrt(dx * dx + dy * dy);
   
       if (dist > 0 && dist < HERO_CONFIG.separationDist) {
-        const force =
-          (HERO_CONFIG.separationDist - dist) /
-          HERO_CONFIG.separationDist;
-  
-        n.vx += (dx / dist) * force * HERO_CONFIG.separation;
-        n.vy += (dy / dist) * force * HERO_CONFIG.separation;
-      }
+        // Strong when close, weak when far
+        const strength = HERO_CONFIG.separation / (dist * dist);
+      
+        // Clamp to prevent instability
+        const capped = Math.min(strength, 0.08);
+      
+        n.vx += (dx / dist) * capped;
+        n.vy += (dy / dist) * capped;
+      }      
     });
   
     /* ---------- Mouse interaction (unchanged, safe) ---------- */
