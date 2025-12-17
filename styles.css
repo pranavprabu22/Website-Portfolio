@@ -53,11 +53,6 @@ body {
   z-index: -1;
 }
 
-.hero {
-  animation: fadeInUp 1.2s ease forwards;
-  padding-top: 7rem;
-}
-
 .hero-content {
   max-width: 720px;
 }
@@ -114,10 +109,11 @@ body {
 
 .hero {
   min-height: 100vh;
-  padding: 4rem;
+  padding: 7rem 4rem 4rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  animation: fadeInUp 1.2s ease forwards;
 }
 
 .hero span {
@@ -258,6 +254,7 @@ section::before {
   backdrop-filter: blur(12px);
   background: rgba(2, 6, 23, 0.75);
   border-bottom: 1px solid rgba(255,255,255,0.05);
+  pointer-events: auto;
 }
 
 .nav-container {
