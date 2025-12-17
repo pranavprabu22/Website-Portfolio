@@ -219,7 +219,7 @@ section::before {
 }
 
 .project-card {
-  background: var(--card);
+  background: rgba(2,6,23,0.85); /* matches skills & interests */
   padding: 1.5rem;
   border-radius: 14px;
   border: 1px solid rgba(255,255,255,0.05);
