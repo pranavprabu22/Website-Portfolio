@@ -310,3 +310,52 @@ section::before {
     display: none;
   }
 }
+
+.contact {
+  text-align: center;
+}
+
+.contact-intro {
+  max-width: 600px;
+  margin: 0 auto 2.5rem;
+  color: var(--muted);
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+.contact-card {
+  background: rgba(2,6,23,0.85); /* matches skills & interests */
+  padding: 1.5rem;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.contact-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+  border-color: rgba(56,189,248,0.4);
+}
+
+.contact-card h4 {
+  margin-bottom: 0.4rem;
+  font-weight: 600;
+}
+
+.contact-card p {
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-bottom: 0.7rem;
+}
+
+.contact-card a {
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: none;
+  word-break: break-word;
+  cursor: pointer;
+}
