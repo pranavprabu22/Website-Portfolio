@@ -1,3 +1,7 @@
+/* =========================================================
+   PROJECT DATA + RENDERING
+========================================================= */
+
 const projects = [
   {
     title: "MLPerf Inference Benchmarking",
@@ -46,17 +50,23 @@ projects.forEach(project => {
   grid.appendChild(card);
 });
 
-// ===== Dynamic Background =====
+
+
+/* =========================================================
+   FULL-PAGE BACKGROUND PARTICLES
+========================================================= */
+
 const canvas = document.getElementById("bg-canvas");
 const ctx = canvas.getContext("2d");
 
 let w, h;
-function resize() {
+function resizeBackground() {
   w = canvas.width = window.innerWidth;
   h = canvas.height = window.innerHeight;
 }
-window.addEventListener("resize", resize);
-resize();
+
+window.addEventListener("resize", resizeBackground);
+resizeBackground();
 
 const particles = Array.from({ length: 80 }, () => ({
   x: Math.random() * w,
@@ -67,12 +77,13 @@ const particles = Array.from({ length: 80 }, () => ({
 }));
 
 let mouse = { x: null, y: null };
+
 window.addEventListener("mousemove", e => {
   mouse.x = e.clientX;
   mouse.y = e.clientY;
 });
 
-function animate() {
+function animateBackground() {
   ctx.clearRect(0, 0, w, h);
 
   particles.forEach(p => {
@@ -84,7 +95,7 @@ function animate() {
 
     const dist = mouse.x
       ? Math.hypot(p.x - mouse.x, p.y - mouse.y)
-      : 999;
+      : Infinity;
 
     const alpha = dist < 120 ? 0.8 : 0.25;
 
@@ -94,10 +105,16 @@ function animate() {
     ctx.fill();
   });
 
-  requestAnimationFrame(animate);
+  requestAnimationFrame(animateBackground);
 }
 
-animate();
+animateBackground();
+
+
+
+/* =========================================================
+   NAVIGATION + SCROLL INTERACTIONS
+========================================================= */
 
 const sections = document.querySelectorAll("section");
 const navLinks = document.querySelectorAll(".nav-links a");
@@ -106,19 +123,24 @@ window.addEventListener("scroll", () => {
   let current = "";
 
   sections.forEach(section => {
-    const sectionTop = section.offsetTop - 100;
-    if (scrollY >= sectionTop) {
-      current = section.getAttribute("id");
+    if (scrollY >= section.offsetTop - 100) {
+      current = section.id;
     }
   });
 
   navLinks.forEach(link => {
-    link.classList.remove("active");
-    if (link.getAttribute("href") === `#${current}`) {
-      link.classList.add("active");
-    }
+    link.classList.toggle(
+      "active",
+      link.getAttribute("href") === `#${current}`
+    );
   });
 });
+
+
+
+/* =========================================================
+   SECTION REVEAL ANIMATIONS
+========================================================= */
 
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
@@ -133,68 +155,92 @@ document.querySelectorAll("section").forEach(section => {
   observer.observe(section);
 });
 
+
+
+/* =========================================================
+   HERO CANVAS — NODE GRAPH ANIMATION
+========================================================= */
+
 const heroCanvas = document.getElementById("hero-visual");
 const hctx = heroCanvas.getContext("2d");
+
+let nodes = [];
+let heroCenter = { x: 0, y: 0 };
+let heroMouse = { x: null, y: null };
+
+function updateHeroCenter() {
+  heroCenter.x = heroCanvas.offsetWidth / 2;
+  heroCenter.y = heroCanvas.offsetHeight / 2;
+}
 
 function resizeHeroCanvas() {
   const dpr = window.devicePixelRatio || 1;
   const rect = heroCanvas.getBoundingClientRect();
 
-  if (rect.width === 0 || rect.height === 0) return;
+  if (!rect.width || !rect.height) return;
 
   heroCanvas.width = rect.width * dpr;
   heroCanvas.height = rect.height * dpr;
 
   hctx.setTransform(1, 0, 0, 1, 0, 0);
   hctx.scale(dpr, dpr);
+
+  updateHeroCenter();
 }
-
-// 🔥 THIS IS IMPORTANT
-window.addEventListener("load", resizeHeroCanvas);
-window.addEventListener("resize", resizeHeroCanvas);
-
-let nodes = [];
 
 function initNodes() {
   nodes = Array.from({ length: 24 }, () => ({
-    x: Math.random() * heroCanvas.offsetWidth,
-    y: Math.random() * heroCanvas.offsetHeight,
-    vx: (Math.random() - 0.5) * 0.4,
-    vy: (Math.random() - 0.5) * 0.4,
+    x: heroCenter.x + (Math.random() - 0.5) * 180,
+    y: heroCenter.y + (Math.random() - 0.5) * 180,
+    vx: (Math.random() - 0.5) * 0.6,
+    vy: (Math.random() - 0.5) * 0.6,
   }));
 }
-
-window.addEventListener("load", () => {
-  resizeHeroCanvas();
-  initNodes();
-  drawHero();
-});
 
 function drawHero() {
   hctx.clearRect(0, 0, heroCanvas.width, heroCanvas.height);
 
   nodes.forEach(n => {
-    n.x += n.vx;
-    n.y += n.vy;
-  
-    // Subtle mouse repulsion
+    // Cohesion toward center
+    const dxC = heroCenter.x - n.x;
+    const dyC = heroCenter.y - n.y;
+    const cohesionStrength = 0.0009;
+
+    n.vx += dxC * cohesionStrength;
+    n.vy += dyC * cohesionStrength;
+
+    // Damping
+    n.vx *= 0.995;
+    n.vy *= 0.995;
+
+    // Clamp velocity
+    const speed = Math.hypot(n.vx, n.vy);
+    if (speed > 1.2) {
+      n.vx = (n.vx / speed) * 1.2;
+      n.vy = (n.vy / speed) * 1.2;
+    }
+
+    // Mouse interaction
     if (heroMouse.x !== null) {
       const dx = n.x - heroMouse.x;
       const dy = n.y - heroMouse.y;
       const dist = Math.sqrt(dx * dx + dy * dy);
-  
+
       if (dist < 120) {
         const force = (120 - dist) / 120;
-        n.x += (dx / dist) * force * 1.2;
-        n.y += (dy / dist) * force * 1.2;
+        n.vx += (dx / dist) * force * 0.15;
+        n.vy += (dy / dist) * force * 0.15;
       }
     }
-  
-    if (n.x < 0 || n.x > heroCanvas.width) n.vx *= -1;
-    if (n.y < 0 || n.y > heroCanvas.height) n.vy *= -1;
+
+    n.x += n.vx;
+    n.y += n.vy;
+
+    if (n.x < 0 || n.x > heroCanvas.offsetWidth) n.vx *= -0.8;
+    if (n.y < 0 || n.y > heroCanvas.offsetHeight) n.vy *= -0.8;
   });
 
-  // Lines
+  // Draw lines
   for (let i = 0; i < nodes.length; i++) {
     for (let j = i + 1; j < nodes.length; j++) {
       const dx = nodes[i].x - nodes[j].x;
@@ -207,8 +253,7 @@ function drawHero() {
         if (heroMouse.x !== null) {
           const mx = (nodes[i].x + nodes[j].x) / 2 - heroMouse.x;
           const my = (nodes[i].y + nodes[j].y) / 2 - heroMouse.y;
-          const md = Math.sqrt(mx * mx + my * my);
-          if (md < 150) alpha += 0.15;
+          if (Math.hypot(mx, my) < 150) alpha += 0.15;
         }
 
         hctx.strokeStyle = `rgba(56,189,248,${Math.min(alpha, 0.9)})`;
@@ -221,7 +266,7 @@ function drawHero() {
     }
   }
 
-  // Nodes
+  // Draw nodes
   nodes.forEach(n => {
     hctx.beginPath();
     hctx.arc(n.x, n.y, 2, 0, Math.PI * 2);
@@ -232,9 +277,11 @@ function drawHero() {
   requestAnimationFrame(drawHero);
 }
 
-drawHero();
 
-let heroMouse = { x: null, y: null };
+
+/* =========================================================
+   HERO MOUSE EVENTS
+========================================================= */
 
 const heroSection = document.querySelector(".hero");
 
@@ -248,3 +295,17 @@ heroSection.addEventListener("mouseleave", () => {
   heroMouse.x = null;
   heroMouse.y = null;
 });
+
+
+
+/* =========================================================
+   INITIALIZATION
+========================================================= */
+
+window.addEventListener("load", () => {
+  resizeHeroCanvas();
+  initNodes();
+  drawHero();
+});
+
+window.addEventListener("resize", resizeHeroCanvas);
