@@ -170,7 +170,7 @@ let heroMouse = { x: null, y: null };
 
 const HERO_CONFIG = {
   cohesion: 0.0006,
-  separation: 6,          // 🔥 higher = stronger close repulsion
+  separation: 8,          // 🔥 higher = stronger close repulsion
   separationDist: 60,     // interaction range
   damping: 0.996,
   maxSpeed: 1.1,
@@ -234,7 +234,8 @@ function drawHero() {
   
       if (dist > 0 && dist < HERO_CONFIG.separationDist) {
         // Strong when close, weak when far
-        const strength = HERO_CONFIG.separation / (dist * dist);
+        const strength = HERO_CONFIG.separation * Math.exp(-(dist * dist) / (2 * 400));
+
       
         // Clamp to prevent instability
         const capped = Math.min(strength, 0.08);
