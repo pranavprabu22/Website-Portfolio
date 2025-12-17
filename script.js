@@ -172,9 +172,19 @@ const HERO_CONFIG = {
   cohesion: 0.0006,
   separation: 8,          // 🔥 higher = stronger close repulsion
   separationDist: 60,     // interaction range
-  damping: 0.996,
+  damping: 0.997,
   maxSpeed: 1.1,
   preferredRadius: 140,
+};
+
+const LATTICE = {
+  spacing: 38,          // distance between lattice points
+  strength: 0.0025,     // snapping force (keep small)
+};
+
+const ENERGY = {
+  min: 0,
+  max: 1.2,             // expected speed range
 };
 
 function updateHeroCenter() {
@@ -206,6 +216,46 @@ function initNodes() {
   }));
 }
 
+function clamp(v, min, max) {
+  return Math.max(min, Math.min(max, v));
+}
+
+function lerp(a, b, t) {
+  return a + (b - a) * t;
+}
+
+/* ---------- Energy → Color ---------- */
+function energyColor(speed, alpha = 1) {
+  const t = clamp(
+    (speed - ENERGY.min) / (ENERGY.max - ENERGY.min),
+    0,
+    1
+  );
+
+  // Cyan → Blue → Purple → Pink
+  const r = Math.floor(lerp(56, 236, t));
+  const g = Math.floor(lerp(189, 72, t));
+  const b = Math.floor(lerp(248, 153, t));
+
+  return `rgba(${r},${g},${b},${alpha})`;
+}
+
+/* ---------- Nearest hex lattice point ---------- */
+function nearestLattice(x, y) {
+  const s = LATTICE.spacing;
+  const rowHeight = s * Math.sqrt(3) / 2;
+
+  const row = Math.round(y / rowHeight);
+  const offset = row % 2 ? s / 2 : 0;
+
+  const col = Math.round((x - offset) / s);
+
+  return {
+    x: col * s + offset,
+    y: row * rowHeight,
+  };
+}
+
 function drawHero() {
   hctx.clearRect(0, 0, heroCanvas.width, heroCanvas.height);
 
@@ -235,7 +285,6 @@ function drawHero() {
       if (dist > 0 && dist < HERO_CONFIG.separationDist) {
         // Strong when close, weak when far
         const strength = HERO_CONFIG.separation * Math.exp(-(dist * dist) / (2 * 400));
-
       
         // Clamp to prevent instability
         const capped = Math.min(strength, 0.08);
@@ -269,6 +318,12 @@ function drawHero() {
       n.vy = (n.vy / speed) * HERO_CONFIG.maxSpeed;
     }
   
+    /* ---------- Lattice snapping (soft) ---------- */
+    const lattice = nearestLattice(n.x - heroCenter.x, n.y - heroCenter.y);
+
+    n.vx += (lattice.x + heroCenter.x - n.x) * LATTICE.strength;
+    n.vy += (lattice.y + heroCenter.y - n.y) * LATTICE.strength;
+
     /* ---------- Apply movement ---------- */
     n.x += n.vx;
     n.y += n.vy;
@@ -290,7 +345,11 @@ function drawHero() {
           if (Math.hypot(mx, my) < 150) alpha += 0.15;
         }
 
-        hctx.strokeStyle = `rgba(56,189,248,${Math.min(alpha, 0.9)})`;
+        const speedA = Math.hypot(nodes[i].vx, nodes[i].vy);
+        const speedB = Math.hypot(nodes[j].vx, nodes[j].vy);
+        const avgEnergy = (speedA + speedB) / 2;
+
+        hctx.strokeStyle = energyColor(avgEnergy, Math.min(alpha, 0.9));
         hctx.lineWidth = 1;
         hctx.beginPath();
         hctx.moveTo(nodes[i].x, nodes[i].y);
@@ -302,9 +361,11 @@ function drawHero() {
 
   // Draw nodes
   nodes.forEach(n => {
+    const speed = Math.hypot(n.vx, n.vy);
+
     hctx.beginPath();
-    hctx.arc(n.x, n.y, 2, 0, Math.PI * 2);
-    hctx.fillStyle = "#38bdf8";
+    hctx.arc(n.x, n.y, 2.2, 0, Math.PI * 2);
+    hctx.fillStyle = energyColor(speed, 1);
     hctx.fill();
   });
 
