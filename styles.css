@@ -7,6 +7,37 @@
   --accent: #38bdf8;
 }
 
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.skills-grid div {
+  background: rgba(2,6,23,0.8);
+  padding: 1.5rem;
+  border-radius: 12px;
+}
+
+.resume-btn {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.7rem 1.4rem;
+  border-radius: 8px;
+  background: var(--accent);
+  color: var(--bg);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.contact-links a {
+  margin-right: 1rem;
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: none;
+}
+
 body {
   background: radial-gradient(
     circle at top left,
@@ -24,6 +55,31 @@ body {
 
 .hero {
   animation: fadeInUp 1.2s ease forwards;
+}
+
+.hero-content {
+  max-width: 720px;
+}
+
+.hero-tags {
+  display: flex;
+  gap: 0.6rem;
+  margin: 1.2rem 0 1.8rem;
+  flex-wrap: wrap;
+}
+
+.hero-tags span {
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  background: rgba(56,189,248,0.15);
+  color: var(--accent);
+}
+
+.scroll-indicator {
+  margin-top: 3rem;
+  font-size: 0.85rem;
+  opacity: 0.6;
 }
 
 @keyframes fadeInUp {
@@ -87,6 +143,42 @@ section {
   padding: 4rem;
   max-width: 1100px;
   margin: auto;
+  position: relative;
+}
+
+section::before {
+  content: "";
+  position: absolute;
+  top: -2rem;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255,255,255,0.08),
+    transparent
+  );
+}
+
+.interests-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.interests-grid div {
+  background: rgba(2,6,23,0.8);
+  padding: 1.4rem;
+  border-radius: 12px;
+}
+
+.edu-card {
+  background: rgba(2,6,23,0.85);
+  padding: 1.6rem;
+  border-radius: 14px;
+  margin-top: 1.5rem;
 }
 
 .project-grid {

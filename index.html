@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Your Name | Portfolio</title>
+  <title>Pranav Prabu | Portfolio</title>
 
   <!-- SEO -->
   <meta name="description" content="Portfolio of Your Name — software engineering, ML, and web projects." />
@@ -19,36 +19,183 @@
 
 <body>
   <canvas id="bg-canvas"></canvas>
-  
-  <header class="hero">
-    <h1>Hi, I'm <span>Pranav Prabu</span></h1>
-    <p class="subtitle">Software Engineer · ML · Web</p>
 
-    <div class="hero-links">
-      <a href="https://github.com/pranavprabu22" target="_blank">GitHub</a>
-      <a href="#projects">Projects</a>
-      <a href="mailto:pranavprabu01@gmail.com">Contact</a>
+  <header class="hero">
+    <div class="hero-content">
+      <h1>Hi, I'm <span>Pranav Prabu</span></h1>
+  
+      <p class="subtitle">
+        Software Engineer focused on systems, machine learning infrastructure,
+        and modern web development.
+      </p>
+  
+      <div class="hero-tags">
+        <span>ML Systems</span>
+        <span>GPU Computing</span>
+        <span>Web Development</span>
+      </div>
+  
+      <div class="hero-links">
+        <a href="#projects">View Projects</a>
+        <a href="assets/Pranav_Prabu_Resume.pdf" target="_blank">Resume</a>
+      </div>
+  
+      <div class="scroll-indicator">
+        ↓ Scroll
+      </div>
     </div>
   </header>
+  
 
   <main>
     <section class="about">
-      <h2>About</h2>
+      <h2>About Me</h2>
       <p>
-        I build scalable software systems, machine learning pipelines,
-        and clean web interfaces. I enjoy turning complex ideas into
-        reliable, usable products.
+        I’m a software engineer with experience spanning systems programming,
+        machine learning infrastructure, and modern web development. I enjoy
+        working close to the metal just as much as designing clean user-facing
+        interfaces.
       </p>
+      <p>
+        Recently, I’ve worked on GPU-accelerated ML benchmarks, data-driven
+        applications, and interactive web platforms. I’m especially interested
+        in building reliable, scalable systems that bridge research and
+        real-world impact.
+      </p>
+    </section>
+
+    <section class="education">
+      <h2>Education</h2>
+    
+      <div class="edu-card">
+        <h3>University of California, San Diego</h3>
+        <span>B.S. in Computer Science</span>
+        <p>
+          Coursework includes machine learning, systems programming,
+          computer architecture, databases, and software engineering.
+        </p>
+      </div>
+    </section>    
+
+    <section class="resume">
+      <h2>Resume</h2>
+      <p>
+        A concise overview of my experience, education, and technical skills.
+      </p>
+    
+      <a class="resume-btn" href="assets/Pranav_Prabu_Resume.pdf" target="_blank">
+        View Resume →
+      </a>
+    </section>
+
+    <section class="experience">
+      <h2>Experience</h2>
+    
+      <div class="exp-item">
+        <h3>Machine Learning Systems Researcher</h3>
+        <span>AMD · 2024</span>
+        <p>
+          Contributed to MLPerf Inference benchmarks by deploying and evaluating
+          large-scale inference workloads on multi-GPU clusters using AMD MI210 GPUs.
+        </p>
+      </div>
+    
+      <div class="exp-item">
+        <h3>Software Engineer</h3>
+        <span>Hackathons & Academic Projects</span>
+        <p>
+          Built end-to-end systems spanning data processing, model evaluation,
+          and modern web interfaces with a focus on usability and performance.
+        </p>
+      </div>
     </section>
 
     <section id="projects" class="projects">
       <h2>Featured Projects</h2>
       <div id="project-grid" class="project-grid"></div>
     </section>
+
+    <section class="skills">
+      <h2>Skills</h2>
+    
+      <div class="skills-grid">
+        <div>
+          <h4>Languages</h4>
+          <p>Python, C, C++, Java, JavaScript, SQL</p>
+        </div>
+    
+        <div>
+          <h4>ML / Data</h4>
+          <p>PyTorch, MLPerf, CUDA, BERT, Model Evaluation</p>
+        </div>
+    
+        <div>
+          <h4>Web</h4>
+          <p>HTML, CSS, React, Tailwind, GitHub Pages</p>
+        </div>
+    
+        <div>
+          <h4>Systems</h4>
+          <p>GPU Computing, Performance Benchmarking, Linux</p>
+        </div>
+      </div>
+    </section>
+    
+    <section class="interests">
+      <h2>Interests</h2>
+    
+      <div class="interests-grid">
+        <div>
+          <h4>Systems & Performance</h4>
+          <p>
+            I enjoy digging into low-level systems, performance bottlenecks,
+            and understanding how software interacts with hardware.
+          </p>
+        </div>
+    
+        <div>
+          <h4>Machine Learning Infrastructure</h4>
+          <p>
+            Interested in model evaluation, benchmarking, and the systems
+            that make ML reliable at scale.
+          </p>
+        </div>
+    
+        <div>
+          <h4>Design & Usability</h4>
+          <p>
+            I care about clean interfaces and thoughtful user experiences,
+            especially for technical tools.
+          </p>
+        </div>
+    
+        <div>
+          <h4>Exploration</h4>
+          <p>
+            Hackathons, tinkering with new tools, and building side projects
+            to learn by doing.
+          </p>
+        </div>
+      </div>
+    </section>
+    
+    <section class="contact">
+      <h2>Contact</h2>
+      <p>
+        I’m always open to discussing new opportunities, collaborations,
+        or interesting technical problems.
+      </p>
+    
+      <div class="contact-links">
+        <a href="mailto:pranavprabu@email.com">Email</a>
+        <a href="https://github.com/pranavprabu22" target="_blank">GitHub</a>
+        <a href="https://linkedin.com/in/your-linkedin" target="_blank">LinkedIn</a>
+      </div>
+    </section>    
   </main>
 
   <footer class="footer">
-    <p>© 2025 Pranav Prabu</p>
+    <p>Built by Pranav Prabu</p>
   </footer>
 
   <script src="script.js"></script>
