@@ -4,29 +4,77 @@
 
 const projects = [
   {
-    title: "MLPerf Inference Benchmarking",
+    title: "Chess AI — Minimax & Alpha-Beta Pruning with Optimized Evaluation",
     description:
-      "Developed and evaluated multi-GPU inference pipelines using AMD MI210 GPUs for large-scale ML benchmarks.",
-    github: "https://github.com/account1/mlperf-inference",
+      "Developed a chess engine implementing standard Minimax and Alpha-Beta pruning algorithms with a sophisticated evaluation function. Designed piece-square tables for positional and phase-dependent strategies, optimized move ordering with MVV-LVA heuristics, integrated Iterative Deepening Search and Quiescence Search, and employed Transposition Tables to improve performance. These optimizations allowed the AI to make strategic decisions efficiently across multiple game formats, balancing speed with move quality.",
+    github: "https://github.com/JeffersonChen888/CSE150B-Group-Project",
     demo: null,
-    tech: ["Python", "PyTorch", "MLPerf", "GPU"],
+    tech: ["Python", "Minimax & Alpha-Beta Pruning", "Iterative Deepening Search", "Quiescence Search"]
   },
   {
-    title: "Nature Unplugged",
+    title: "Productivity Suite — Calendar, Task List & Journal",
     description:
-      "A digital wellness web platform focused on reducing screen fatigue through guided offline activities.",
-    github: "https://github.com/account2/nature-unplugged",
-    demo: "https://nature-unplugged.com",
-    tech: ["HTML", "CSS", "JavaScript"],
+      "Developed a full-stack web application for task and time management, featuring a calendar, customizable task lists, and a journal with code support. The journal leverages CodeMirror to allow syntax highlighting for JavaScript, Python, and C++. Implemented CI/CD pipelines with GitHub Actions, automated testing with Jest, and code quality checks via Codacy, ensuring a robust and maintainable development workflow.",
+    github: "https://github.com/cse110-sp24-group10/cse110-sp24-group10",
+    demo: null,
+    tech: ["JavaScript", "HTML/CSS", "CodeMirror", "Jest", "CI/CD"]
   },
   {
-    title: "Floating Point Adder",
+    title: "Predicting Diseases Using Machine Learning",
     description:
-      "Implemented IEEE-754 style floating point addition under strict 8-bit storage constraints.",
-    github: "https://github.com/account1/float-adder",
+      "Developed a multi-model machine learning pipeline to predict the presence of diseases using the SUPPORT2 dataset from UC Irvine. Explored and preprocessed 21 key patient features, addressing null values and class imbalance. Implemented multi-class logistic regression, neural networks (Keras), SVM, XGBoost, Gradient Boosted Trees, and K-Nearest Neighbors, with hyperparameter tuning and cross-validation to optimize model performance. Achieved the best results with XGBoost, providing interpretable feature importance for disease prediction.",
+    github: "https://github.com/sebastian-dv/CSE-151A-Project",
     demo: null,
-    tech: ["C", "Computer Architecture"],
-  }
+    tech: ["Python", "Pandas", "scikit-learn", "Keras", "XGBoost"]
+  },
+  {
+    title: "Bidirectional Modern–Early Modern English Translator",
+    description:
+      "A computational linguistics project building a bidirectional translator between Modern English and Shakespearean Early Modern English. This involved constructing a parallel corpus from No Fear Shakespeare, preprocessing text, and implementing Seq2Seq LSTM, Marian MT, and T5 transformer models for style-preserving translation. Models were evaluated using BLEU, perplexity, WER, and a custom stylistic classifier. :contentReference[oaicite:1]{index=1}",
+    github: "https://github.com/pprabu-ucsd/LIGN-167-Final-Project-Bidirectional-Shakespeare-Modern-English-Conversion",
+    demo: null,
+    tech: ["Python", "NLP", "Machine Learning", "Transformers", "Hugging Face"],
+  },
+  {
+    title: "AI Mood Calendar",
+    description:
+      "A multimodal mood logging and mental health support system integrating real-time facial emotion recognition (YOLOv8), speech-to-text conversion (Google Speech Recognition), structured storage (SQLite), and AI agent analysis (Gemini LLM + Google ADK). Users can log moods, fetch past entries, and receive personalized feedback. The project emphasized synchronization of multimodal inputs, database-backed longitudinal tracking, real-time inference tradeoffs, LLM-driven analysis, and ethical handling of sensitive emotional data. :contentReference[oaicite:1]{index=1}",
+    github: "https://github.com/pranavprabu22/AI_Mood_Calendar",
+    demo: null,
+    tech: ["Python", "Computer Vision", "Speech Recognition", "SQLite", "YOLOv8", "Google ADK"],
+  },
+  {
+    title: "Emotion‑Based Music Recommendation System",
+    description:
+      "A real-time, vision-driven music recommender that detects user emotions via webcam (YOLO + OpenCV) and dynamically recommends Spotify tracks aligned with detected moods. The system maps facial expressions to valence-arousal features, queries the Spotify API for adaptive music selection, and presents results through a Flask web interface. Key learnings include feature representation bridging human emotions and computational inputs, real-time system optimization, API robustness, and ethical considerations for personalization and privacy. :contentReference[oaicite:1]{index=1}",
+    github: "https://github.com/pranavprabu22/Emotion_Based_Music_Recommendation_System",
+    demo: null,
+    tech: ["Python", "Computer Vision", "Flask", "YOLO", "OpenCV", "Spotify API"],
+  },
+  {
+    title: "Emotion‑Driven Adaptive Gaming",
+    description:
+      "An adaptive version of the Chrome Dino Runner where gameplay speed dynamically adjusts to the player’s facial expressions using YOLO-based emotion recognition and OpenCV. The system integrates real-time emotion detection with Pygame mechanics, mapping emotions to game speed and creating a feedback loop between affect and difficulty, with persistent high score tracking. Key learnings include latency-aware emotion recognition, concurrency for responsive interaction, interpretable adaptation rules, and user-centered design for engagement. :contentReference[oaicite:1]{index=1}",
+    github: "https://github.com/pranavprabu22/Emotion_Driven_Adaptive_Gaming",
+    demo: null,
+    tech: ["Python", "Computer Vision", "Pygame", "YOLO", "OpenCV"],
+  },
+  {
+    title: "EPE Tutorials",
+    description:
+      "A collection of tutorials designed to teach machine learning concepts and practical skills, including a Python crash course, an introduction to PyTorch models, and guidance on working with LBN (Latent Bayesian Network) models. The tutorials emphasize hands-on learning and step-by-step explanations for building foundational ML knowledge. :contentReference[oaicite:1]{index=1}",
+    github: "https://github.com/pranavprabu22/EPE-Tutorials",
+    demo: null,
+    tech: ["Python", "PyTorch", "Machine Learning", "LBN"],
+  },
+  {
+    title: "Sentiment Analysis Model Comparison",
+    description:
+      "A project comparing four sentiment analysis models—Naive Bayes, DistilBERT, Logistic Regression, and Support Vector Machine (SVM)—on a movie review dataset. The workflow included data preprocessing (punctuation removal, tokenization, stemming, lemmatization), model training, evaluation, and result comparison using metrics like F1 score, accuracy, precision, and recall. The SVM model achieved the best performance. :contentReference[oaicite:1]{index=1}",
+    github: "https://github.com/pranavprabu22/Sentiment-Analysis-Model-Comparison",
+    demo: null,
+    tech: ["Python", "NLP", "Machine Learning", "DistilBERT", "SVM", "Naive Bayes", "Logistic Regression"],
+  },
 ];
 
 const grid = document.getElementById("project-grid");
