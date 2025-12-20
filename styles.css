@@ -211,6 +211,11 @@ section::before {
   margin-top: 1.5rem;
 }
 
+.edu-coursework li {
+  margin-bottom: 1em; /* space between course categories */
+  line-height: 1.5;   /* space between individual courses */
+}
+
 .project-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
