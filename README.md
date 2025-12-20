@@ -4,7 +4,7 @@ This repository contains the source code for my personal portfolio website, buil
 
 The site is fully static and hosted using **GitHub Pages**, making it fast, reliable, and easy to maintain.
 
-🔗 **Live site:** https://pranavprabu22.github.io
+🔗 **Live site:** [https://pranavprabu22.github.io/Website-Portfolio/](https://pranavprabu22.github.io/Website-Portfolio/)
 
 ---
 
@@ -31,7 +31,7 @@ The site is fully static and hosted using **GitHub Pages**, making it fast, reli
 ## 📁 Project Structure
 
 ```text
-pranavprabu22.github.io/
+https://pranavprabu22.github.io/Website-Portfolio/
 ├── index.html      # Main site structure
 ├── styles.css      # Global styles and layout
 ├── script.js       # Project data and rendering logic
