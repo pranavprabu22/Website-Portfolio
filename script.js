@@ -30,7 +30,7 @@ const projects = [
   {
     title: "Bidirectional Modern–Early Modern English Translator",
     description:
-      "A computational linguistics project building a bidirectional translator between Modern English and Shakespearean Early Modern English. This involved constructing a parallel corpus from No Fear Shakespeare, preprocessing text, and implementing Seq2Seq LSTM, Marian MT, and T5 transformer models for style-preserving translation. Models were evaluated using BLEU, perplexity, WER, and a custom stylistic classifier. :contentReference[oaicite:1]{index=1}",
+      "A computational linguistics project building a bidirectional translator between Modern English and Shakespearean Early Modern English. This involved constructing a parallel corpus from No Fear Shakespeare, preprocessing text, and implementing Seq2Seq LSTM, Marian MT, and T5 transformer models for style-preserving translation. Models were evaluated using BLEU, perplexity, WER, and a custom stylistic classifier.",
     github: "https://github.com/pprabu-ucsd/LIGN-167-Final-Project-Bidirectional-Shakespeare-Modern-English-Conversion",
     demo: null,
     tech: ["Python", "NLP", "Machine Learning", "Transformers", "Hugging Face"],
@@ -38,7 +38,7 @@ const projects = [
   {
     title: "AI Mood Calendar",
     description:
-      "A multimodal mood logging and mental health support system integrating real-time facial emotion recognition (YOLOv8), speech-to-text conversion (Google Speech Recognition), structured storage (SQLite), and AI agent analysis (Gemini LLM + Google ADK). Users can log moods, fetch past entries, and receive personalized feedback. The project emphasized synchronization of multimodal inputs, database-backed longitudinal tracking, real-time inference tradeoffs, LLM-driven analysis, and ethical handling of sensitive emotional data. :contentReference[oaicite:1]{index=1}",
+      "A multimodal mood logging and mental health support system integrating real-time facial emotion recognition (YOLOv8), speech-to-text conversion (Google Speech Recognition), structured storage (SQLite), and AI agent analysis (Gemini LLM + Google ADK). Users can log moods, fetch past entries, and receive personalized feedback. The project emphasized synchronization of multimodal inputs, database-backed longitudinal tracking, real-time inference tradeoffs, LLM-driven analysis, and ethical handling of sensitive emotional data.",
     github: "https://github.com/pranavprabu22/AI_Mood_Calendar",
     demo: null,
     tech: ["Python", "Computer Vision", "Speech Recognition", "SQLite", "YOLOv8", "Google ADK"],
@@ -46,7 +46,7 @@ const projects = [
   {
     title: "Emotion‑Based Music Recommendation System",
     description:
-      "A real-time, vision-driven music recommender that detects user emotions via webcam (YOLO + OpenCV) and dynamically recommends Spotify tracks aligned with detected moods. The system maps facial expressions to valence-arousal features, queries the Spotify API for adaptive music selection, and presents results through a Flask web interface. Key learnings include feature representation bridging human emotions and computational inputs, real-time system optimization, API robustness, and ethical considerations for personalization and privacy. :contentReference[oaicite:1]{index=1}",
+      "A real-time, vision-driven music recommender that detects user emotions via webcam (YOLO + OpenCV) and dynamically recommends Spotify tracks aligned with detected moods. The system maps facial expressions to valence-arousal features, queries the Spotify API for adaptive music selection, and presents results through a Flask web interface. Key learnings include feature representation bridging human emotions and computational inputs, real-time system optimization, API robustness, and ethical considerations for personalization and privacy.",
     github: "https://github.com/pranavprabu22/Emotion_Based_Music_Recommendation_System",
     demo: null,
     tech: ["Python", "Computer Vision", "Flask", "YOLO", "OpenCV", "Spotify API"],
@@ -54,7 +54,7 @@ const projects = [
   {
     title: "Emotion‑Driven Adaptive Gaming",
     description:
-      "An adaptive version of the Chrome Dino Runner where gameplay speed dynamically adjusts to the player’s facial expressions using YOLO-based emotion recognition and OpenCV. The system integrates real-time emotion detection with Pygame mechanics, mapping emotions to game speed and creating a feedback loop between affect and difficulty, with persistent high score tracking. Key learnings include latency-aware emotion recognition, concurrency for responsive interaction, interpretable adaptation rules, and user-centered design for engagement. :contentReference[oaicite:1]{index=1}",
+      "An adaptive version of the Chrome Dino Runner where gameplay speed dynamically adjusts to the player’s facial expressions using YOLO-based emotion recognition and OpenCV. The system integrates real-time emotion detection with Pygame mechanics, mapping emotions to game speed and creating a feedback loop between affect and difficulty, with persistent high score tracking. Key learnings include latency-aware emotion recognition, concurrency for responsive interaction, interpretable adaptation rules, and user-centered design for engagement.",
     github: "https://github.com/pranavprabu22/Emotion_Driven_Adaptive_Gaming",
     demo: null,
     tech: ["Python", "Computer Vision", "Pygame", "YOLO", "OpenCV"],
@@ -62,7 +62,7 @@ const projects = [
   {
     title: "EPE Tutorials",
     description:
-      "A collection of tutorials designed to teach machine learning concepts and practical skills, including a Python crash course, an introduction to PyTorch models, and guidance on working with LBN (Latent Bayesian Network) models. The tutorials emphasize hands-on learning and step-by-step explanations for building foundational ML knowledge. :contentReference[oaicite:1]{index=1}",
+      "A collection of tutorials designed to teach machine learning concepts and practical skills, including a Python crash course, an introduction to PyTorch models, and guidance on working with LBN (Latent Bayesian Network) models. The tutorials emphasize hands-on learning and step-by-step explanations for building foundational ML knowledge.",
     github: "https://github.com/pranavprabu22/EPE-Tutorials",
     demo: null,
     tech: ["Python", "PyTorch", "Machine Learning", "LBN"],
@@ -70,7 +70,7 @@ const projects = [
   {
     title: "Sentiment Analysis Model Comparison",
     description:
-      "A project comparing four sentiment analysis models—Naive Bayes, DistilBERT, Logistic Regression, and Support Vector Machine (SVM)—on a movie review dataset. The workflow included data preprocessing (punctuation removal, tokenization, stemming, lemmatization), model training, evaluation, and result comparison using metrics like F1 score, accuracy, precision, and recall. The SVM model achieved the best performance. :contentReference[oaicite:1]{index=1}",
+      "A project comparing four sentiment analysis models—Naive Bayes, DistilBERT, Logistic Regression, and Support Vector Machine (SVM)—on a movie review dataset. The workflow included data preprocessing (punctuation removal, tokenization, stemming, lemmatization), model training, evaluation, and result comparison using metrics like F1 score, accuracy, precision, and recall. The SVM model achieved the best performance.",
     github: "https://github.com/pranavprabu22/Sentiment-Analysis-Model-Comparison",
     demo: null,
     tech: ["Python", "NLP", "Machine Learning", "DistilBERT", "SVM", "Naive Bayes", "Logistic Regression"],
