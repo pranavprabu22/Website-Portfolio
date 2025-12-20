@@ -7,93 +7,9 @@
   --accent: #38bdf8;
 }
 
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.5rem;
-  margin-top: 2rem;
-}
-
-.skills-grid div {
-  background: rgba(2,6,23,0.8);
-  padding: 1.5rem;
-  border-radius: 12px;
-}
-
-.resume-btn {
-  display: inline-block;
-  margin-top: 1rem;
-  padding: 0.7rem 1.4rem;
-  border-radius: 8px;
-  background: var(--accent);
-  color: var(--bg);
-  font-weight: 600;
-  text-decoration: none;
-}
-
-.contact-links a {
-  margin-right: 1rem;
-  color: var(--accent);
-  font-weight: 600;
-  text-decoration: none;
-}
-
-body {
-  background: radial-gradient(
-    circle at top left,
-    #1e293b,
-    #020617
-  );
-  overflow-x: hidden;
-}
-
-#bg-canvas {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-}
-
-.hero-content {
-  max-width: 720px;
-}
-
-.hero-tags {
-  display: flex;
-  gap: 0.6rem;
-  margin: 1.2rem 0 1.8rem;
-  flex-wrap: wrap;
-}
-
-.hero-tags span {
-  padding: 0.3rem 0.7rem;
-  border-radius: 999px;
-  font-size: 0.75rem;
-  background: rgba(56,189,248,0.15);
-  color: var(--accent);
-}
-
-.scroll-indicator {
-  margin-top: 3rem;
-  font-size: 0.85rem;
-  opacity: 0.6;
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(15px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.project-card {
-  backdrop-filter: blur(8px);
-  background: rgba(2, 6, 23, 0.85);
-}
-
+/* ===========================
+   GENERAL LAYOUT
+=========================== */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -105,23 +21,7 @@ body {
   background: linear-gradient(180deg, var(--bg), var(--bg-alt));
   color: var(--text);
   line-height: 1.6;
-}
-
-.hero {
-  min-height: 100vh;
-  padding: 4rem;
-  display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  align-items: center;
-  position: relative;
-}
-
-#hero-visual {
-  position: relative;
-  width: 100%;
-  min-height: 420px;
-  height: 420px;
-  background: transparent;
+  overflow-x: hidden;
 }
 
 canvas {
@@ -133,141 +33,13 @@ canvas {
   pointer-events: none;
 }
 
-.hero span {
-  color: var(--accent);
-}
-
-.subtitle {
-  color: var(--muted);
-  margin: 0.5rem 0 1.5rem;
-}
-
-.hero-links a {
-  display: inline-block;
-  margin-right: 1rem;
-  padding: 0.6rem 1.2rem;
-  background: var(--accent);
-  color: var(--bg);
-  border-radius: 8px;
-  font-weight: 600;
-  text-decoration: none;
-}
-
-section {
-  padding: 4rem;
-  max-width: 1100px;
-  margin: auto;
-  position: relative;
-  scroll-margin-top: 80px;
-}
-
 html {
   scroll-behavior: smooth;
 }
 
-.reveal {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.7s ease;
-}
-
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-section::before {
-  content: "";
-  position: absolute;
-  top: -2rem;
-  left: 0;
-  width: 100%;
-  height: 1px;
-  background: linear-gradient(
-    to right,
-    transparent,
-    rgba(255,255,255,0.08),
-    transparent
-  );
-}
-
-.interests-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 1.5rem;
-  margin-top: 2rem;
-}
-
-.interests-grid div {
-  background: rgba(2,6,23,0.8);
-  padding: 1.4rem;
-  border-radius: 12px;
-}
-
-.edu-card {
-  background: rgba(2,6,23,0.85);
-  padding: 1.6rem;
-  border-radius: 14px;
-  margin-top: 1.5rem;
-}
-
-.edu-coursework li {
-  margin-bottom: 1em; /* space between course categories */
-  line-height: 1.5;   /* space between individual courses */
-}
-
-.project-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
-  margin-top: 2rem;
-}
-
-.project-card {
-  background: rgba(2,6,23,0.85); /* matches skills & interests */
-  padding: 1.5rem;
-  border-radius: 14px;
-  border: 1px solid rgba(255,255,255,0.05);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.project-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 15px 40px rgba(0,0,0,0.5);
-}
-
-.project-card h3 {
-  margin-bottom: 0.5rem;
-}
-
-.project-card p {
-  color: var(--muted);
-  font-size: 0.95rem;
-  margin-bottom: 1rem;
-}
-
-.tech {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-  margin-bottom: 1rem;
-}
-
-.tech span {
-  font-size: 0.75rem;
-  padding: 0.25rem 0.6rem;
-  border-radius: 999px;
-  background: rgba(56,189,248,0.15);
-  color: var(--accent);
-}
-
-.project-links a {
-  color: var(--accent);
-  text-decoration: none;
-  font-weight: 600;
-  margin-right: 1rem;
-}
-
+/* ===========================
+   NAVBAR
+=========================== */
 .navbar {
   position: fixed;
   top: 0;
@@ -313,10 +85,63 @@ section::before {
   color: var(--accent);
 }
 
-.footer {
-  text-align: center;
-  padding: 2rem;
+/* ===========================
+   HERO SECTION
+=========================== */
+.hero {
+  min-height: 100vh;
+  padding: 4rem;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  align-items: center;
+  position: relative;
+}
+
+.hero-content {
+  max-width: 720px;
+}
+
+.hero span {
+  color: var(--accent);
+}
+
+.subtitle {
   color: var(--muted);
+  margin: 0.5rem 0 1.5rem;
+}
+
+.hero-tags {
+  display: flex;
+  gap: 0.6rem;
+  margin: 1.2rem 0 1.8rem;
+  flex-wrap: wrap;
+}
+
+.hero-tags span {
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  background: rgba(56,189,248,0.15);
+  color: var(--accent);
+}
+
+.hero-links a {
+  display: inline-block;
+  margin-right: 1rem;
+  padding: 0.6rem 1.2rem;
+  background: var(--accent);
+  color: var(--bg);
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+#hero-visual {
+  position: relative;
+  width: 100%;
+  min-height: 420px;
+  height: 420px;
+  background: transparent;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -325,6 +150,252 @@ section::before {
   }
 }
 
+/* ===========================
+   SECTIONS
+=========================== */
+section {
+  padding: 4rem;
+  max-width: 1100px;
+  margin: auto;
+  position: relative;
+  scroll-margin-top: 80px;
+}
+
+section::before {
+  content: "";
+  position: absolute;
+  top: -2rem;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255,255,255,0.08),
+    transparent
+  );
+}
+
+/* ===========================
+   REVEAL ANIMATIONS
+=========================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.7s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===========================
+   ABOUT SECTION
+=========================== */
+.about {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  line-height: 1.7;
+}
+
+.about p {
+  max-width: 850px;
+  margin-bottom: 1rem;
+  color: var(--text);
+}
+
+/* ===========================
+   EDUCATION SECTION
+=========================== */
+.education {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.edu-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  background: rgba(2,6,23,0.85);
+  padding: 2rem;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
+.edu-card h3 {
+  margin-bottom: 0.2rem;
+  font-size: 1.25rem;
+  color: var(--accent);
+}
+
+.edu-card span {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.edu-coursework {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.edu-coursework li {
+  flex: 1 1 220px;
+  line-height: 1.5;
+}
+
+/* ===========================
+   EXPERIENCE SECTION
+=========================== */
+.experience {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.exp-item {
+  background: rgba(2,6,23,0.85);
+  padding: 1.6rem 2rem;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.exp-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+}
+
+.exp-item h3 {
+  margin-bottom: 0.2rem;
+  color: var(--accent);
+}
+
+.exp-item span {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-bottom: 0.8rem;
+  display: block;
+}
+
+.exp-item p {
+  color: var(--text);
+  line-height: 1.6;
+}
+
+/* ===========================
+   PROJECTS SECTION
+=========================== */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 1.5rem;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.05);
+  background: rgba(2,6,23,0.85);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+}
+
+.project-card h3 {
+  margin-bottom: 0.5rem;
+  color: var(--accent);
+}
+
+.project-card p {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+  flex: 1 1 auto;
+}
+
+.tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+}
+
+.tech span {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  background: rgba(56,189,248,0.15);
+  color: var(--accent);
+}
+
+.project-links a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+  margin-right: 1rem;
+}
+
+/* ===========================
+   SKILLS SECTION
+=========================== */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.skills-grid div {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background: rgba(2,6,23,0.85);
+  padding: 1.5rem;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.skills-grid h4 {
+  margin-bottom: 0.5rem;
+  color: var(--accent);
+}
+
+/* ===========================
+   INTERESTS SECTION
+=========================== */
+.interests-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.interests-grid div {
+  background: rgba(2,6,23,0.8);
+  padding: 1.4rem;
+  border-radius: 12px;
+}
+
+.interests-grid h4 {
+  margin-bottom: 0.5rem;
+  color: var(--accent);
+}
+
+/* ===========================
+   CONTACT SECTION
+=========================== */
 .contact {
   text-align: center;
 }
@@ -342,7 +413,7 @@ section::before {
 }
 
 .contact-card {
-  background: rgba(2,6,23,0.85); /* matches skills & interests */
+  background: rgba(2,6,23,0.85);
   padding: 1.5rem;
   border-radius: 14px;
   border: 1px solid rgba(255,255,255,0.05);
@@ -371,4 +442,27 @@ section::before {
   text-decoration: none;
   word-break: break-word;
   cursor: pointer;
+}
+
+/* ===========================
+   FOOTER
+=========================== */
+.footer {
+  text-align: center;
+  padding: 2rem;
+  color: var(--muted);
+}
+
+/* ===========================
+   ANIMATIONS
+=========================== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
