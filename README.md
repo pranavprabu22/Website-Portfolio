@@ -2,7 +2,7 @@
 
 This repository contains the source code for my personal portfolio website, built to showcase selected software engineering, machine learning, and web projects.
 
-The site is fully static and hosted using **GitHub Pages**, making it fast, reliable, and easy to maintain.
+The site is fully static and hosted on **GitHub Pages**, making it fast, reliable, and easy to maintain.
 
 🔗 **Live site:** [https://pranavprabu22.github.io/Website-Portfolio/](https://pranavprabu22.github.io/Website-Portfolio/)
 
@@ -11,28 +11,28 @@ The site is fully static and hosted using **GitHub Pages**, making it fast, reli
 ## ✨ Features
 
 - Modern, responsive design
-- Curated project showcase (across multiple GitHub accounts)
-- Clean, readable project descriptions
+- Curated project showcase (aggregated from multiple GitHub repositories)
+- Clear, readable project descriptions
 - Mobile-friendly layout
 - Easy to customize and extend
-- Deployed with GitHub Pages
+- Fully deployed using GitHub Pages
 
 ---
 
 ## 🛠 Tech Stack
 
-- **HTML5**
-- **CSS3** (Flexbox + Grid)
-- **JavaScript (ES6+)**
-- **GitHub Pages** for hosting
+- **HTML5** – semantic markup for structure
+- **CSS3** – Flexbox & Grid for layout and responsive design
+- **JavaScript (ES6+)** – dynamic content rendering
+- **GitHub Pages** – hosting and deployment
 
 ---
 
 ## 📁 Project Structure
 
 ```text
-https://pranavprabu22.github.io/Website-Portfolio/
+Website-Portfolio/
 ├── index.html      # Main site structure
 ├── styles.css      # Global styles and layout
-├── script.js       # Project data and rendering logic
-└── assets/         # Images and static assets
+├── script.js       # Project data and dynamic rendering logic
+└── assets/         # Images, PDFs, and other static assets
