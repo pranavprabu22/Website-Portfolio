@@ -28,6 +28,15 @@ canvas {
   pointer-events: none;
 }
 
+#bg-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+}
+
 #bg-canvas,
 #hero-visual {
   pointer-events: none;
@@ -90,15 +99,15 @@ html {
 =========================== */
 .hero {
   min-height: 100vh;
-  padding: 4rem;
+  padding: 6rem 4rem 4rem; /* push down below navbar */
   display: grid;
-  grid-template-columns: 1.2fr 1fr;
+  grid-template-columns: 1.1fr 0.9fr;
   align-items: center;
-  position: relative;
 }
 
 .hero-content {
-  max-width: 720px;
+  max-width: 680px;
+  margin-left: auto;   /* centers text block */
 }
 
 .hero span {
@@ -176,6 +185,10 @@ section::before {
   );
 }
 
+section.hero {
+  padding-top: 0; /* remove extra padding for hero section */
+}
+
 /* ===========================
    REVEAL ANIMATIONS
 =========================== */
@@ -198,12 +211,16 @@ section::before {
   flex-direction: column;
   gap: 1.2rem;
   line-height: 1.7;
+  align-items: center;
+  text-align: center;
 }
 
 .about p {
   max-width: 850px;
   margin-bottom: 1rem;
   color: var(--text);
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* ===========================
@@ -237,14 +254,51 @@ section::before {
 }
 
 .edu-coursework {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  list-style: none;
 }
 
-.edu-coursework li {
-  flex: 1 1 220px;
-  line-height: 1.5;
+.edu-group {
+  background: rgba(2,6,23,0.8);
+  padding: 1.3rem;
+  border-radius: 14px;
+}
+
+.edu-group h5 {
+  color: var(--accent);
+  font-size: 0.95rem;
+  margin-bottom: 0.9rem;
+}
+
+.edu-courses {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.edu-courses li {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  column-gap: 0.8rem;
+  align-items: start;
+}
+
+.course-code {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text);
+  opacity: 0.85;
+  white-space: nowrap;
+}
+
+.course-title {
+  font-size: 0.8rem;
+  color: var(--muted);
+  line-height: 1.35;
 }
 
 /* ===========================
